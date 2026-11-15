@@ -1,0 +1,22 @@
+{
+ "privileged": [
+  "staz0t"
+ ],
+ "approval_group": [
+  "staz0t"
+ ],
+ "approving_reviews": 1,
+ "ignore_checks": [
+  "record",
+  "dashboard",
+  "autosubmit"
+ ],
+ "hold_seconds": 900,
+ "poll_seconds": 20,
+ "initial_delay_seconds": 30,
+ "presubmit_seconds": 1800,
+ "luci_workflow": "luci-model.yml",
+ "release_workflow": "release-from-branches.yml",
+ "release_prefix": "release-",
+ "default_branch": "main"
+}
