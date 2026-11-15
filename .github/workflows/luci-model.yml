@@ -1,0 +1,22 @@
+name: luci-model
+on:
+  workflow_dispatch:
+    inputs:
+      check_run_id: {required: true}
+      delay_seconds: {required: true}
+permissions: {}
+jobs:
+  complete:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions: {checks: write}
+    steps:
+      - env:
+          ID: ${{ inputs.check_run_id }}
+          DELAY: ${{ inputs.delay_seconds }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          case "$ID$DELAY" in *[!0-9]*) exit 1;; esac
+          sleep "$DELAY"
+          gh api -X PATCH "repos/$REPO/check-runs/$ID" -f status=completed -f conclusion=success >/dev/null
